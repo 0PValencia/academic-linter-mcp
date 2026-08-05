@@ -6,7 +6,7 @@ import { lintDocumentStructure, type StructureInput } from "./lint.js";
 
 function createServer(): McpServer {
   const server = new McpServer(
-    { name: "academic-linter-mcp", version: "0.1.0" },
+    { name: "academic-linter-mcp", version: "0.1.1" },
     {
       instructions:
         "Linter académico. Pasa el JSON de get_document_structure (o un resumen de headings) a lint_structure. No modifica el Doc: solo reporta hallazgos. Luego corrige con google-documents-mcp.",
@@ -143,4 +143,9 @@ function extractHeadings(input: StructureInput): Array<{
   return [];
 }
 
-await serveStdio(() => createServer());
+console.error("academic-linter-mcp running on stdio");
+serveStdio(() => createServer(), {
+  onerror: (error) => {
+    console.error("academic-linter-mcp error:", error instanceof Error ? error.message : String(error));
+  },
+});

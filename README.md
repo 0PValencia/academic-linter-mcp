@@ -2,13 +2,24 @@
 
 MCP linter académico (APA/estructura) para JSON de Google Docs.
 
-## Install / run (npx)
+## Cursor / Claude / VS Code
 
-```bash
-npx -y @0pvalencia/academic-linter-mcp
+### Local (recomendado si clonas el repo)
+
+```json
+{
+  "mcpServers": {
+    "academic-linter": {
+      "command": "node",
+      "args": ["/ABSOLUTE/PATH/TO/academic-linter-mcp/dist/cli.js"]
+    }
+  }
+}
 ```
 
-## Cursor / Claude / VS Code
+Tras clonar: `npm install && npm run build`.
+
+### npx (sin clonar)
 
 ```json
 {
@@ -19,6 +30,14 @@ npx -y @0pvalencia/academic-linter-mcp
     }
   }
 }
+```
+
+> Si abres este repo en Cursor y usas `npx`, hace falta `npm install && npm run build` para que el bin local exista. Sin eso, `npx` falla con `academic-linter-mcp: not found` y el MCP se queda cargando.
+
+## Install / run
+
+```bash
+npx -y @0pvalencia/academic-linter-mcp
 ```
 
 ## Local
